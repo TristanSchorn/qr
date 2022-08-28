@@ -10,42 +10,45 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import Logo from "./logo"
 import "./layout.css"
+import Navigation from "./navigation"
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
+import Footer from "./footer"
+import Theme from "../components/theme"
+
+const query = graphql`
+  query LayoutQuery {
+    site {
+      siteMetadata {
+        siteTitle: title
       }
     }
-  `)
+  }
+`
+
+const Layout = ({ children, className }) => {
+  const { site } = useStaticQuery(query)
+  const { siteTitle } = site.siteMetadata
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: `var(--size-content)`,
-          padding: `var(--size-gutter)`,
-        }}
-      >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-5)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
-          © {new Date().getFullYear()} &middot; Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
+    <div className="primary-container">
+      <Header>
+        <Logo title={siteTitle} />
+        <div sx={layoutStyle.nav}>
+          <div sx={{ display: ["flex", "flex", "flex", "none"] }}>
+            {/* <Search searchIndex={siteSearchIndex.index} /> */}
+          </div>
+          <Navigation />
+        </div>
+        <div sx={layoutStyle.appearance}>
+          {/* <Search searchIndex={siteSearchIndex.index} /> */}
+          <Theme />
+        </div>
+      </Header>
+      <main className={"container " + className}>{children}</main>
+      <Footer />
+    </div>
   )
 }
 
@@ -54,3 +57,16 @@ Layout.propTypes = {
 }
 
 export default Layout
+
+const layoutStyle = {
+  appearance: {
+    display: ["none", "none", "none", "flex"],
+    alignItems: "center",
+    gap: 4,
+  },
+  nav: {
+    display: "flex",
+    alignItems: "center",
+    gap: 4,
+  },
+}
