@@ -1,10 +1,13 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+
 import * as React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import * as styles from "../components/index.module.css"
+// import * as styles from "../components/index.module.css"
 import { RiSendPlane2Line } from "react-icons/ri"
 
 const samplePageLinks = [
@@ -20,12 +23,10 @@ const samplePageLinks = [
   { text: "Deferred Static Generation", url: "using-dsg" },
 ]
 
-const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
-
 const IndexPage = () => (
-  <Layout>
+  <Layout className="contact-page" sx={contactStyles.contactPage}>
     <Seo title="Home" />
-    <div className={styles.textCenter}>
+    <div>
       <StaticImage
         src="../images/example.png"
         loading="eager"
@@ -38,7 +39,7 @@ const IndexPage = () => (
       <h1>
         Welcome to <b>Gatsby!</b>
       </h1>
-      <p className={styles.intro}>
+      <p>
         <b>Example pages:</b>{" "}
         {samplePageLinks.map((link, i) => (
           <React.Fragment key={link.url}>
@@ -112,3 +113,20 @@ const IndexPage = () => (
 export const Head = () => <Seo title="Home" />
 
 export default IndexPage
+
+const contactStyles = {
+  contactPage: {
+    input: {
+      border: "6px solid",
+      borderColor: "inputBorder",
+      bg: "inputBackground",
+      outline: "none",
+    },
+    textarea: {
+      border: "6px solid",
+      borderColor: "inputBorder",
+      bg: "inputBackground",
+      outline: "none",
+    },
+  },
+}

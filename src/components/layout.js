@@ -5,13 +5,16 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+
 import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import Logo from "./logo"
-import "./layout.css"
+import "../assets/scss/style.scss"
 import Navigation from "./navigation"
 
 import Footer from "./footer"
