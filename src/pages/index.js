@@ -37,7 +37,7 @@ const IndexPage = () => (
         style={{ marginBottom: `var(--space-3)` }}
       />
       <h1>
-        Welcome to <b>Gatsby!</b>
+        Welcome to QR!
       </h1>
       <p>
         <b>Example pages:</b>{" "}
@@ -47,8 +47,6 @@ const IndexPage = () => (
             {i !== samplePageLinks.length - 1 && <> · </>}
           </React.Fragment>
         ))}
-        <br />
-        Edit <code>src/pages/index.js</code> to update this page.
       </p>
     </div>
 
@@ -82,7 +80,13 @@ const IndexPage = () => (
           </p>
           <p>
             <label>
-              Message<textarea name="message" required></textarea>
+              URL
+              <input type="url" name="subject" required placeholder="https://google.ca"/>
+            </label>
+          </p>
+          <p>
+            <label>
+              Message<textarea name="message"></textarea>
             </label>
           </p>
           <p className="text-align-right">
