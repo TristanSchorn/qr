@@ -81,7 +81,7 @@ const IndexPage = () => (
           <p>
             <label>
               URL
-              <input type="url" name="subject" required placeholder="https://google.ca"/>
+              <input type="url" name="url" required placeholder="https://google.ca"/>
             </label>
           </p>
           <p>
